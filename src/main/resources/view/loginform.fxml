@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="696.0" prefWidth="600.0" style="-fx-background-color: #2f3e46;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.chatApp.controller.LoginformController">
+   <children>
+      <ImageView fitHeight="696.0" fitWidth="602.0" opacity="0.07" pickOnBounds="true">
+         <image>
+            <Image url="@../img/background.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="121.0" fitWidth="122.0" layoutX="247.0" layoutY="170.0" pickOnBounds="true">
+         <image>
+            <Image url="@../img/logo.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="224.0" layoutY="644.0" text="Play Tech Pvt(Ltd)" textFill="#2a9a84">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="160.0" layoutY="313.0" prefHeight="58.0" prefWidth="297.0" text="Live Chat Login" textFill="#2a9a84">
+         <font>
+            <Font name="System Bold" size="40.0" />
+         </font>
+      </Label>
+      <JFXTextField fx:id="txtUsername" alignment="CENTER" focusColor="#2a9a84" layoutX="111.0" layoutY="383.0" onAction="#txtUsernameOnAction" prefHeight="31.0" prefWidth="396.0" promptText="Enter your username" style="-fx-prompt-text-fill: #2a9a84; -fx-text-fill: #2a9a84;" unFocusColor="#2a9a84">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </JFXTextField>
+      <JFXButton layoutX="224.0" layoutY="452.0" onAction="#btnLoginOnAction" prefHeight="31.0" prefWidth="154.0" style="-fx-background-color: #2a9a84; -fx-background-radius: 8px;" text="Login" textFill="#2f3e46">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </JFXButton>
+   </children>
+</AnchorPane>

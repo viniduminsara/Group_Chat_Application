@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="696.0" prefWidth="600.0" style="-fx-background-color: #2f3e46;" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.chatApp.controller.ClientFormController">
+   <children>
+      <Label fx:id="lblName" layoutX="31.0" layoutY="22.0" prefHeight="21.0" prefWidth="246.0" text="name" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="621.0" fitWidth="600.0" layoutY="76.0" opacity="0.5" pickOnBounds="true">
+         <image>
+            <Image url="@../img/background.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="txtMessage" layoutX="21.0" layoutY="632.0" onAction="#txtMessageOnAction" prefHeight="38.0" prefWidth="495.0" promptText="Type here" style="-fx-background-color: #445159; -fx-text-fill: #828b90; -fx-background-radius: 20px;" />
+      <JFXButton contentDisplay="GRAPHIC_ONLY" layoutX="523.0" layoutY="632.0" onAction="#btnSendOnAction" prefHeight="38.0" prefWidth="61.0" style="-fx-background-color: #57cc99; -fx-background-radius: 20px;">
+         <graphic>
+            <ImageView fitHeight="23.0" fitWidth="24.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../img/send.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <ScrollPane layoutX="21.0" layoutY="90.0" prefHeight="532.0" prefWidth="552.0">
+         <content>
+            <VBox fx:id="vBox" prefHeight="530.0" prefWidth="549.0" />
+         </content>
+      </ScrollPane>
+      <JFXButton contentDisplay="GRAPHIC_ONLY" layoutX="461.0" layoutY="632.0" onAction="#btnAttachmentOnAction">
+         <graphic>
+            <ImageView fitHeight="27.0" fitWidth="26.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../img/attachment.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+   </children>
+</AnchorPane>
