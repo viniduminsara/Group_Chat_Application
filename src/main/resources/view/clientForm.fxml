@@ -10,7 +10,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="696.0" prefWidth="600.0" style="-fx-background-color: #2f3e46;" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.chatApp.controller.ClientFormController">
    <children>
       <Label fx:id="lblName" layoutX="31.0" layoutY="22.0" prefHeight="21.0" prefWidth="246.0" text="name" textFill="WHITE">
@@ -33,7 +32,7 @@
             </ImageView>
          </graphic>
       </JFXButton>
-      <ScrollPane layoutX="21.0" layoutY="90.0" prefHeight="532.0" prefWidth="552.0">
+      <ScrollPane fx:id="scrollPane" layoutX="21.0" layoutY="90.0" prefHeight="532.0" prefWidth="552.0">
          <content>
             <VBox fx:id="vBox" prefHeight="530.0" prefWidth="549.0" />
          </content>

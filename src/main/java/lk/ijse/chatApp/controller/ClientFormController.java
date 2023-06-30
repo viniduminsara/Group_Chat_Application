@@ -3,12 +3,17 @@ package lk.ijse.chatApp.controller;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import javafx.stage.FileChooser;
 
 import java.io.*;
@@ -25,6 +30,9 @@ public class ClientFormController{
     @FXML
     private VBox vBox;
 
+    @FXML
+    private ScrollPane scrollPane;
+
     private BufferedReader bufferedReader;
 
     private PrintWriter writer;
@@ -32,6 +40,8 @@ public class ClientFormController{
     private String username;
 
     private File file;
+
+    private String finalName;
 
     @FXML
     void btnAttachmentOnAction(ActionEvent event) {
@@ -55,6 +65,7 @@ public class ClientFormController{
             }else {
                 writer.println(lblName.getText() + "~" + txtMessage.getText());
             }
+            txtMessage.setEditable(true);
             txtMessage.clear();
         }
     }
@@ -80,39 +91,115 @@ public class ClientFormController{
                     String[] split = receive.split("~");
                     String name = split[0];
                     String message = split[1];
-                    System.out.println(message);
 
                     String firstChars = "";
                     if (name.length() > 3) {
                         firstChars = name.substring(0, 3);
                     }
+                    if (firstChars.equalsIgnoreCase("img")){
+                        String[] imgs = name.split("img");
+                        finalName = imgs[1];
+                    }
+                    if (firstChars.equalsIgnoreCase("img")){
+                        if (finalName.equalsIgnoreCase(username)){
 
-                    if (name.equalsIgnoreCase(username)){
-                        if (firstChars.equalsIgnoreCase("img")){
                             File receiveFile = new File(message);
                             Image image = new Image(receiveFile.toURI().toString());
-                            ImageView imageView2 = new ImageView(image);
+                            ImageView imageView = new ImageView(image);
+                            imageView.setFitHeight(170);
+                            imageView.setFitWidth(200);
+
+                            Text text = new Text("~ Me");
+
+                            VBox vbox = new VBox(10);
+                            vbox.getChildren().addAll(text, imageView);
+
+                            HBox hBox = new HBox(10);
+                            hBox.getStyleClass().add("send-box");
+                            hBox.setMaxHeight(190);
+                            hBox.setMaxWidth(220);
+                            hBox.getChildren().add(vbox);
+
+                            StackPane stackPane = new StackPane(hBox);
+                            stackPane.getStyleClass().add("send-box-container");
+                            stackPane.setAlignment(Pos.CENTER_RIGHT);
 
                             Platform.runLater(() -> {
-                                vBox.getChildren().add(imageView2);
+                                vBox.getChildren().addAll(stackPane);
+                                scrollPane.layout();
+                                scrollPane.setVvalue(2.0);
                             });
                         }else {
+                            File receives = new File(message);
+                            Image image = new Image(receives.toURI().toString());
+                            ImageView imageView = new ImageView(image);
+                            imageView.setFitHeight(170);
+                            imageView.setFitWidth(200);
+
+                            Text text = new Text("~ "+finalName);
+
+                            VBox vbox = new VBox(10);
+                            vbox.getChildren().addAll(text, imageView);
+
+                            HBox hBox = new HBox(10);
+                            hBox.getStyleClass().add("receive-box");
+                            hBox.setMaxHeight(190);
+                            hBox.setMaxWidth(220);
+                            hBox.getChildren().add(vbox);
+
                             Platform.runLater(() -> {
-                                vBox.getChildren().add(new Text("Me : " + message));
+                                vBox.getChildren().addAll(hBox);
+                                scrollPane.layout();
+                                scrollPane.setVvalue(2.0);
                             });
                         }
                     }else {
-                        if(firstChars.equalsIgnoreCase("img")){
-                            File receiveFile = new File(message);
-                            Image image = new Image(receiveFile.toURI().toString());
-                            ImageView imageView2 = new ImageView(image);
+                        if(name.equalsIgnoreCase(username)){
+                            TextFlow tempFlow = new TextFlow();
+                            Text text = new Text(message);
+                            text.setWrappingWidth(200);
+                            text.getStyleClass().add("send-text");
+                            tempFlow.getChildren().add(text);
+                            tempFlow.setMaxWidth(150);
 
+                            Text nameText = new Text("~ Me");
+                            VBox vbox = new VBox(10);
+                            vbox.getChildren().addAll(nameText, tempFlow);
+
+                            HBox hBox = new HBox(12);
+                            hBox.getStyleClass().add("send-box");
+                            hBox.setMaxWidth(220);
+                            hBox.setMaxHeight(50);
+                            hBox.getChildren().add(vbox);
+                            StackPane stackPane = new StackPane(hBox);
+                            stackPane.setAlignment(Pos.CENTER_RIGHT);
                             Platform.runLater(() -> {
-                                vBox.getChildren().add(imageView2);
+                                vBox.getChildren().addAll(stackPane);
+                                scrollPane.layout();
+                                scrollPane.setVvalue(2.0);
                             });
                         }else {
+                            TextFlow tempFlow = new TextFlow();
+                            Text text = new Text(message);
+                            text.setWrappingWidth(200);
+                            text.getStyleClass().add("receive-text");
+                            tempFlow.getChildren().add(text);
+                            tempFlow.setMaxWidth(150);
+
+                            Text nameText = new Text("~ "+name);
+                            VBox vbox = new VBox(10);
+                            vbox.getChildren().addAll(nameText, tempFlow);
+
+                            HBox hBox = new HBox();
+                            hBox.getStyleClass().add("receive-box");
+                            hBox.setMaxWidth(220);
+                            hBox.setMaxHeight(50);
+                            hBox.getChildren().add(vbox);
+
                             Platform.runLater(() -> {
-                                vBox.getChildren().add(new Text(name + " : " + message));
+                                vBox.getChildren().addAll(hBox);
+                                scrollPane.layout();
+                                scrollPane.setVvalue(2.0);
                             });
                         }
                     }

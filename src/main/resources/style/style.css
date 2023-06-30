@@ -42,3 +42,34 @@
 .scroll-bar:vertical .decrement-arrow {
     -fx-background-color: transparent;
 }
+
+.receive-text {
+    -fx-font-size: 12;
+    -fx-text-fill: #1ea21e;
+}
+
+.receive-box {
+    -fx-background-color: #DCF8C6;
+    -fx-padding: 8;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-border-color: #8EDF8D;
+    -fx-border-width: 1;
+    -fx-start-margin: 10px;
+}
+
+.send-box{
+    -fx-background-color: #ffe2d6;
+    -fx-padding: 8;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-border-color: #d59378;
+    -fx-border-width: 1;
+    -fx-start-margin: 10px;
+}
+
+.send-text{
+    -fx-font-size: 12;
+    -fx-text-fill: #e0602d;
+    -fx-alignment: baseline-right;
+}
