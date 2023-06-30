@@ -5,13 +5,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.Socket;
 
 public class ClientFormController{
@@ -25,19 +25,36 @@ public class ClientFormController{
     @FXML
     private VBox vBox;
 
-    BufferedReader bufferedReader;
+    private BufferedReader bufferedReader;
 
-    PrintWriter writer;
+    private PrintWriter writer;
+
+    private String username;
+
+    private File file;
 
     @FXML
     void btnAttachmentOnAction(ActionEvent event) {
-
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Select the image");
+        FileChooser.ExtensionFilter imageFilter =
+                new FileChooser.ExtensionFilter("Image Files", "*.jpg", "*.jpeg", "*.png", "*.gif");
+        fileChooser.getExtensionFilters().add(imageFilter);
+        file = fileChooser.showOpenDialog(txtMessage.getScene().getWindow());
+        if (file != null){
+            txtMessage.setText("1 image selected");
+            txtMessage.setEditable(false);
+        }
     }
 
     @FXML
     void btnSendOnAction(ActionEvent event) {
         if (!txtMessage.getText().isEmpty()){
-            writer.println(lblName.getText()+" : "+txtMessage.getText());
+            if (file != null){
+                writer.println("img"+lblName.getText()+"~"+file.getPath());
+            }else {
+                writer.println(lblName.getText() + "~" + txtMessage.getText());
+            }
             txtMessage.clear();
         }
     }
@@ -48,7 +65,8 @@ public class ClientFormController{
     }
 
     public void initialize() {
-        lblName.setText(LoginformController.username);
+        username = LoginformController.username;
+        lblName.setText(username);
 
         new Thread(() -> {
             try {
@@ -58,10 +76,47 @@ public class ClientFormController{
                 writer = new PrintWriter(socket.getOutputStream(),true);
 
                 while (true){
-                    String message = bufferedReader.readLine();
-                    Platform.runLater(() -> {
-                        vBox.getChildren().add(new Text(message));
-                    });
+                    String receive = bufferedReader.readLine();
+                    String[] split = receive.split("~");
+                    String name = split[0];
+                    String message = split[1];
+                    System.out.println(message);
+
+                    String firstChars = "";
+                    if (name.length() > 3) {
+                        firstChars = name.substring(0, 3);
+                    }
+
+                    if (name.equalsIgnoreCase(username)){
+                        if (firstChars.equalsIgnoreCase("img")){
+                            File receiveFile = new File(message);
+                            Image image = new Image(receiveFile.toURI().toString());
+                            ImageView imageView2 = new ImageView(image);
+
+                            Platform.runLater(() -> {
+                                vBox.getChildren().add(imageView2);
+                            });
+                        }else {
+                            Platform.runLater(() -> {
+                                vBox.getChildren().add(new Text("Me : " + message));
+                            });
+                        }
+                    }else {
+                        if(firstChars.equalsIgnoreCase("img")){
+                            File receiveFile = new File(message);
+                            Image image = new Image(receiveFile.toURI().toString());
+                            ImageView imageView2 = new ImageView(image);
+
+                            Platform.runLater(() -> {
+                                vBox.getChildren().add(imageView2);
+                            });
+                        }else {
+                            Platform.runLater(() -> {
+                                vBox.getChildren().add(new Text(name + " : " + message));
+                            });
+                        }
+                    }
+                    file = null;
                 }
             } catch (IOException e) {
                 e.printStackTrace();
