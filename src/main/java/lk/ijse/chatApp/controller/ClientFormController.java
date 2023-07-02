@@ -10,6 +10,8 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -33,6 +35,9 @@ public class ClientFormController{
 
     @FXML
     private ScrollPane scrollPane;
+
+    @FXML
+    private AnchorPane emojiPane;
 
     private BufferedReader bufferedReader;
 
@@ -74,6 +79,11 @@ public class ClientFormController{
     @FXML
     void txtMessageOnAction(ActionEvent event) {
         btnSendOnAction(event);
+    }
+
+    @FXML
+    void btnEmojiOnAction(ActionEvent event) {
+        emojiPane.setVisible(!emojiPane.isVisible());
     }
 
     public void initialize() {
@@ -160,7 +170,6 @@ public class ClientFormController{
 
                                 //adding space between messages
                                 HBox hBox1 = new HBox();
-                                hBox1.setAlignment(Pos.CENTER_LEFT);
                                 hBox1.setPadding(new Insets(5, 5, 5, 10));
                                 vBox.getChildren().add(hBox1);
                             });
@@ -170,7 +179,6 @@ public class ClientFormController{
                             TextFlow tempFlow = new TextFlow();
                             Text text = new Text(message);
                             text.setWrappingWidth(200);
-                            text.getStyleClass().add("send-text");
                             tempFlow.getChildren().add(text);
                             tempFlow.setMaxWidth(150);
 
@@ -192,7 +200,6 @@ public class ClientFormController{
 
                                 //adding space between messages
                                 HBox hBox1 = new HBox();
-                                hBox1.setAlignment(Pos.CENTER_LEFT);
                                 hBox1.setPadding(new Insets(5, 5, 5, 10));
                                 vBox.getChildren().add(hBox1);
                             });
@@ -200,7 +207,6 @@ public class ClientFormController{
                             TextFlow tempFlow = new TextFlow();
                             Text text = new Text(message);
                             text.setWrappingWidth(200);
-                            text.getStyleClass().add("receive-text");
                             tempFlow.getChildren().add(text);
                             tempFlow.setMaxWidth(150);
 
@@ -221,7 +227,6 @@ public class ClientFormController{
 
                                 //adding space between messages
                                 HBox hBox1 = new HBox();
-                                hBox1.setAlignment(Pos.CENTER_LEFT);
                                 hBox1.setPadding(new Insets(5, 5, 5, 10));
                                 vBox.getChildren().add(hBox1);
                             });
@@ -233,5 +238,55 @@ public class ClientFormController{
                 e.printStackTrace();
             }
         }).start();
+    }
+
+    @FXML
+    void grinningFaceEmojiOnAction(MouseEvent event) {
+        txtMessage.appendText("\uD83D\uDE00");
+    }
+
+    @FXML
+    void grinningSquintingOnAction(MouseEvent event) {
+        txtMessage.appendText("\uD83D\uDE06");
+    }
+
+    @FXML
+    void smilingFaceWithOpenHandsOnAction(MouseEvent event) {
+        txtMessage.appendText("\uD83E\uDD17");
+    }
+
+    @FXML
+    void grinningFaceWithSweatOnAction(MouseEvent event) {
+        txtMessage.appendText("\uD83D\uDE05");
+    }
+
+    @FXML
+    void faceWithTearsOfJoyOnAction(MouseEvent event) {
+        txtMessage.appendText("\uD83D\uDE02");
+    }
+
+    @FXML
+    void cryingFaceOnAction(MouseEvent event) {
+        txtMessage.appendText("\uD83D\uDE22");
+    }
+
+    @FXML
+    void sunglassesFaceOnAction(MouseEvent event) {
+        txtMessage.appendText("\uD83D\uDE0E");
+    }
+
+    @FXML
+    void smilingFaceWithHeartEyesOnAction(MouseEvent event) {
+        txtMessage.appendText("\uD83D\uDE0D");
+    }
+
+    @FXML
+    void smilingFaceWithHornsOnAction(MouseEvent event) {
+        txtMessage.appendText("\uD83D\uDE08");
+    }
+
+    @FXML
+    void thumbsUpOnAction(MouseEvent event) {
+        txtMessage.appendText("\uD83D\uDC4D");
     }
 }

@@ -44,8 +44,8 @@
 }
 
 .receive-text {
-    -fx-font-size: 12;
-    -fx-text-fill: #1ea21e;
+    -fx-font-size: 12 !important;
+    -fx-text-fill: #1ea21e !important;
 }
 
 .receive-box {
@@ -56,6 +56,8 @@
     -fx-border-color: #8EDF8D;
     -fx-border-width: 1;
     -fx-start-margin: 10px;
+    -fx-font-size: 12 !important;
+    -fx-text-fill: #1ea21e !important;
 }
 
 .send-box{
@@ -66,10 +68,24 @@
     -fx-border-color: #d59378;
     -fx-border-width: 1;
     -fx-start-margin: 10px;
+    -fx-font-size: 12 !important;
+    -fx-text-fill: #e0602d !important;
 }
 
 .send-text{
-    -fx-font-size: 12;
-    -fx-text-fill: #e0602d;
-    -fx-alignment: baseline-right;
+    -fx-font-size: 12 !important;
+    -fx-text-fill: #e0602d !important;
+}
+
+.name-text{
+    -fx-text-fill: red;
+    -fx-font-size: 12px;
+}
+
+.emoji_pane{
+    -fx-background-color: #2f3e46;
+    -fx-background-radius: 10;
+    -fx-border-width: 0 0 5 0;
+    -fx-border-color:  #57cc99;
+    -fx-border-radius: 10;
 }
