@@ -3,6 +3,7 @@ package lk.ijse.chatApp.controller;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -121,13 +122,18 @@ public class ClientFormController{
                             hBox.getChildren().add(vbox);
 
                             StackPane stackPane = new StackPane(hBox);
-                            stackPane.getStyleClass().add("send-box-container");
                             stackPane.setAlignment(Pos.CENTER_RIGHT);
 
                             Platform.runLater(() -> {
                                 vBox.getChildren().addAll(stackPane);
                                 scrollPane.layout();
                                 scrollPane.setVvalue(2.0);
+
+                                //adding space between messages
+                                HBox hBox1 = new HBox();
+                                hBox1.setAlignment(Pos.CENTER_LEFT);
+                                hBox1.setPadding(new Insets(5, 5, 5, 10));
+                                vBox.getChildren().add(hBox1);
                             });
                         }else {
                             File receives = new File(message);
@@ -151,6 +157,12 @@ public class ClientFormController{
                                 vBox.getChildren().addAll(hBox);
                                 scrollPane.layout();
                                 scrollPane.setVvalue(2.0);
+
+                                //adding space between messages
+                                HBox hBox1 = new HBox();
+                                hBox1.setAlignment(Pos.CENTER_LEFT);
+                                hBox1.setPadding(new Insets(5, 5, 5, 10));
+                                vBox.getChildren().add(hBox1);
                             });
                         }
                     }else {
@@ -177,6 +189,12 @@ public class ClientFormController{
                                 vBox.getChildren().addAll(stackPane);
                                 scrollPane.layout();
                                 scrollPane.setVvalue(2.0);
+
+                                //adding space between messages
+                                HBox hBox1 = new HBox();
+                                hBox1.setAlignment(Pos.CENTER_LEFT);
+                                hBox1.setPadding(new Insets(5, 5, 5, 10));
+                                vBox.getChildren().add(hBox1);
                             });
                         }else {
                             TextFlow tempFlow = new TextFlow();
@@ -200,6 +218,12 @@ public class ClientFormController{
                                 vBox.getChildren().addAll(hBox);
                                 scrollPane.layout();
                                 scrollPane.setVvalue(2.0);
+
+                                //adding space between messages
+                                HBox hBox1 = new HBox();
+                                hBox1.setAlignment(Pos.CENTER_LEFT);
+                                hBox1.setPadding(new Insets(5, 5, 5, 10));
+                                vBox.getChildren().add(hBox1);
                             });
                         }
                     }
