@@ -15,6 +15,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.FileChooser;
@@ -97,6 +99,8 @@ public class ClientFormController{
                 bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                 writer = new PrintWriter(socket.getOutputStream(),true);
 
+                writer.println("joi"+username+"~joining");
+
                 while (true){
                     String receive = bufferedReader.readLine();
                     String[] split = receive.split("~");
@@ -110,6 +114,9 @@ public class ClientFormController{
                     if (firstChars.equalsIgnoreCase("img")){
                         String[] imgs = name.split("img");
                         finalName = imgs[1];
+                    }else if(firstChars.equalsIgnoreCase("joi")){
+                        String[] imgs = name.split("joi");
+                        finalName = imgs[1];
                     }
                     if (firstChars.equalsIgnoreCase("img")){
                         if (finalName.equalsIgnoreCase(username)){
@@ -121,6 +128,7 @@ public class ClientFormController{
                             imageView.setFitWidth(200);
 
                             Text text = new Text("~ Me");
+                            text.getStyleClass().add("send-text");
 
                             VBox vbox = new VBox(10);
                             vbox.getChildren().addAll(text, imageView);
@@ -153,6 +161,7 @@ public class ClientFormController{
                             imageView.setFitWidth(200);
 
                             Text text = new Text("~ "+finalName);
+                            text.getStyleClass().add("receive-text");
 
                             VBox vbox = new VBox(10);
                             vbox.getChildren().addAll(text, imageView);
@@ -174,15 +183,47 @@ public class ClientFormController{
                                 vBox.getChildren().add(hBox1);
                             });
                         }
-                    }else {
+                    }else if(firstChars.equalsIgnoreCase("joi")) {
+                        if (finalName.equalsIgnoreCase(username)){
+                            Label text = new Label("You have join the chat");
+                            text.getStyleClass().add("join-text");
+                            HBox hBox = new HBox();
+                            hBox.getChildren().add(text);
+                            hBox.setAlignment(Pos.CENTER);
+
+                            Platform.runLater(() -> {
+                                vBox.getChildren().add(hBox);
+
+                                HBox hBox1 = new HBox();
+                                hBox1.setPadding(new Insets(5, 5, 5, 10));
+                                vBox.getChildren().add(hBox1);
+                            });
+                        }else{
+                            Label text = new Label(finalName+" has join the chat");
+                            text.getStyleClass().add("join-text");
+                            HBox hBox = new HBox();
+                            hBox.getChildren().add(text);
+                            hBox.setAlignment(Pos.CENTER);
+
+                            Platform.runLater(() -> {
+                                vBox.getChildren().add(hBox);
+
+                                HBox hBox1 = new HBox();
+                                hBox1.setPadding(new Insets(5, 5, 5, 10));
+                                vBox.getChildren().add(hBox1);
+                            });
+                        }
+                    }else{
                         if(name.equalsIgnoreCase(username)){
                             TextFlow tempFlow = new TextFlow();
                             Text text = new Text(message);
+                            text.setStyle("-fx-fill: white");
                             text.setWrappingWidth(200);
                             tempFlow.getChildren().add(text);
                             tempFlow.setMaxWidth(150);
 
                             Text nameText = new Text("~ Me");
+                            nameText.getStyleClass().add("send-text");
                             VBox vbox = new VBox(10);
                             vbox.getChildren().addAll(nameText, tempFlow);
 
@@ -206,11 +247,13 @@ public class ClientFormController{
                         }else {
                             TextFlow tempFlow = new TextFlow();
                             Text text = new Text(message);
+                            text.setStyle("-fx-fill: white");
                             text.setWrappingWidth(200);
                             tempFlow.getChildren().add(text);
                             tempFlow.setMaxWidth(150);
 
                             Text nameText = new Text("~ "+name);
+                            nameText.getStyleClass().add("receive-text");
                             VBox vbox = new VBox(10);
                             vbox.getChildren().addAll(nameText, tempFlow);
 

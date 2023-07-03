@@ -44,42 +44,40 @@
 }
 
 .receive-text {
-    -fx-font-size: 12 !important;
-    -fx-text-fill: #1ea21e !important;
+    -fx-font-size: 12;
+    -fx-fill: #46775e;
 }
 
 .receive-box {
-    -fx-background-color: #DCF8C6;
+    -fx-background-color: #74c69d;
     -fx-padding: 8;
     -fx-border-radius: 8;
     -fx-background-radius: 8;
-    -fx-border-color: #8EDF8D;
+    -fx-border-color: transparent;
     -fx-border-width: 1;
     -fx-start-margin: 10px;
-    -fx-font-size: 12 !important;
-    -fx-text-fill: #1ea21e !important;
 }
 
 .send-box{
-    -fx-background-color: #ffe2d6;
+    -fx-background-color: #264653;
     -fx-padding: 8;
     -fx-border-radius: 8;
     -fx-background-radius: 8;
-    -fx-border-color: #d59378;
+    -fx-border-color: transparent;
     -fx-border-width: 1;
     -fx-start-margin: 10px;
-    -fx-font-size: 12 !important;
-    -fx-text-fill: #e0602d !important;
 }
 
 .send-text{
-    -fx-font-size: 12 !important;
-    -fx-text-fill: #e0602d !important;
+    -fx-font-size: 12;
+    -fx-font-weight: bold;
+    -fx-fill: #172a32;
 }
 
-.name-text{
-    -fx-text-fill: red;
-    -fx-font-size: 12px;
+.join-text{
+    -fx-text-fill:  #57cc99;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
 }
 
 .emoji_pane{
