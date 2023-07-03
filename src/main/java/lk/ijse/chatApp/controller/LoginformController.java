@@ -23,6 +23,7 @@ public class LoginformController {
             username = txtUsername.getText();
             Stage stage = (Stage) txtUsername.getScene().getWindow();
             stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/clientForm.fxml"))));
+            stage.setOnCloseRequest(windowEvent -> ClientFormController.leaveChat());
             stage.show();
         }else{
             new Alert(Alert.AlertType.WARNING,"Please enter the username").show();

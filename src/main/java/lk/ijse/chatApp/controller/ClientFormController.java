@@ -15,8 +15,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.FileChooser;
@@ -43,9 +41,9 @@ public class ClientFormController{
 
     private BufferedReader bufferedReader;
 
-    private PrintWriter writer;
+    private static PrintWriter writer;
 
-    private String username;
+    private static String username;
 
     private File file;
 
@@ -116,6 +114,9 @@ public class ClientFormController{
                         finalName = imgs[1];
                     }else if(firstChars.equalsIgnoreCase("joi")){
                         String[] imgs = name.split("joi");
+                        finalName = imgs[1];
+                    }else if(firstChars.equalsIgnoreCase("lef")){
+                        String[] imgs = name.split("lef");
                         finalName = imgs[1];
                     }
                     if (firstChars.equalsIgnoreCase("img")){
@@ -213,7 +214,21 @@ public class ClientFormController{
                                 vBox.getChildren().add(hBox1);
                             });
                         }
-                    }else{
+                    }else if(firstChars.equalsIgnoreCase("lef")){
+                        Label text = new Label(finalName+" has left the chat");
+                        text.getStyleClass().add("left-text");
+                        HBox hBox = new HBox();
+                        hBox.getChildren().add(text);
+                        hBox.setAlignment(Pos.CENTER);
+
+                        Platform.runLater(() -> {
+                            vBox.getChildren().add(hBox);
+
+                            HBox hBox1 = new HBox();
+                            hBox1.setPadding(new Insets(5, 5, 5, 10));
+                            vBox.getChildren().add(hBox1);
+                        });
+                    } else{
                         if(name.equalsIgnoreCase(username)){
                             TextFlow tempFlow = new TextFlow();
                             Text text = new Text(message);
@@ -281,6 +296,10 @@ public class ClientFormController{
                 e.printStackTrace();
             }
         }).start();
+    }
+
+    public static void leaveChat(){
+        writer.println("lef"+username + "~leave");
     }
 
     @FXML
