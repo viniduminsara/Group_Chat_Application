@@ -7,6 +7,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
@@ -112,5 +113,10 @@
       </AnchorPane>
       <Circle fill="#26bc12" layoutX="27.0" layoutY="57.0" radius="6.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
       <Label layoutX="41.0" layoutY="47.0" opacity="0.47" text="Online" textFill="WHITE" />
+      <Pane fx:id="imagePane" onMouseClicked="#closeOnAction" opacity="0.74" prefHeight="697.0" prefWidth="600.0" styleClass="image_pane" visible="false">
+         <children>
+            <ImageView fx:id="clickedImage" fitHeight="558.0" fitWidth="529.0" layoutX="36.0" layoutY="91.0" pickOnBounds="true" />
+         </children>
+      </Pane>
    </children>
 </AnchorPane>

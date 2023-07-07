@@ -93,3 +93,7 @@
     -fx-border-color:  #57cc99;
     -fx-border-radius: 10;
 }
+
+.image_pane{
+    -fx-background-color: rgba(100, 98, 98, 0.43);
+}

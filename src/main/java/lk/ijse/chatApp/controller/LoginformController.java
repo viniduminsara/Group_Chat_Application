@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -23,6 +24,8 @@ public class LoginformController {
             username = txtUsername.getText();
             Stage stage = (Stage) txtUsername.getScene().getWindow();
             stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/clientForm.fxml"))));
+            stage.setTitle(username+"'s chat");
+            stage.getIcons().add(new Image("img/logo.png"));
             stage.setOnCloseRequest(windowEvent -> ClientFormController.leaveChat());
             stage.show();
         }else{

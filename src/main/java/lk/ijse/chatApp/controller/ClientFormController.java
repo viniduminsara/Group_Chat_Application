@@ -11,10 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.FileChooser;
@@ -38,6 +35,12 @@ public class ClientFormController{
 
     @FXML
     private AnchorPane emojiPane;
+
+    @FXML
+    private Pane imagePane;
+
+    @FXML
+    private ImageView clickedImage;
 
     private BufferedReader bufferedReader;
 
@@ -86,6 +89,11 @@ public class ClientFormController{
         emojiPane.setVisible(!emojiPane.isVisible());
     }
 
+    @FXML
+    void closeOnAction(MouseEvent event) {
+        imagePane.setVisible(false);
+    }
+
     public void initialize() {
         username = LoginformController.username;
         lblName.setText(username);
@@ -127,6 +135,10 @@ public class ClientFormController{
                             ImageView imageView = new ImageView(image);
                             imageView.setFitHeight(170);
                             imageView.setFitWidth(200);
+                            imageView.setOnMouseClicked(mouseEvent -> {
+                                clickedImage.setImage(imageView.getImage());
+                                imagePane.setVisible(true);
+                            });
 
                             Text text = new Text("~ Me");
                             text.getStyleClass().add("send-text");
@@ -160,6 +172,10 @@ public class ClientFormController{
                             ImageView imageView = new ImageView(image);
                             imageView.setFitHeight(170);
                             imageView.setFitWidth(200);
+                            imageView.setOnMouseClicked(mouseEvent -> {
+                                clickedImage.setImage(imageView.getImage());
+                                imagePane.setVisible(true);
+                            });
 
                             Text text = new Text("~ "+finalName);
                             text.getStyleClass().add("receive-text");
