@@ -19,7 +19,7 @@
             <Image url="@../img/background.png" />
          </image>
       </ImageView>
-      <Pane layoutX="33.0" layoutY="626.0" prefHeight="47.0" prefWidth="475.0" style="-fx-background-color: #445159; -fx-background-radius: 10px;">
+      <Pane layoutX="36.0" layoutY="635.0" prefHeight="47.0" prefWidth="475.0" style="-fx-background-color: #445159; -fx-background-radius: 10px;">
          <children>
             <TextField fx:id="txtMessage" layoutX="38.0" onAction="#txtMessageOnAction" prefHeight="47.0" prefWidth="402.0" promptText="Type here" style="-fx-background-color: #ffffff00; -fx-text-fill: #828b90; -fx-background-radius: 20px;" />
             <JFXButton contentDisplay="GRAPHIC_ONLY" layoutX="428.0" layoutY="5.0" onAction="#btnAttachmentOnAction" ripplerFill="#445159">
@@ -42,7 +42,7 @@
             </JFXButton>
          </children>
       </Pane>
-      <JFXButton contentDisplay="GRAPHIC_ONLY" layoutX="523.0" layoutY="632.0" onAction="#btnSendOnAction" prefHeight="38.0" prefWidth="61.0" ripplerFill="#57cc99" style="-fx-background-color: #57cc99; -fx-background-radius: 20px;">
+      <JFXButton contentDisplay="GRAPHIC_ONLY" layoutX="523.0" layoutY="640.0" onAction="#btnSendOnAction" prefHeight="38.0" prefWidth="61.0" ripplerFill="#57cc99" style="-fx-background-color: #57cc99; -fx-background-radius: 20px;">
          <graphic>
             <ImageView fitHeight="23.0" fitWidth="24.0" pickOnBounds="true">
                <image>
@@ -56,7 +56,7 @@
             <VBox fx:id="vBox" prefHeight="545.0" prefWidth="524.0" />
          </content>
       </ScrollPane>
-      <AnchorPane fx:id="emojiPane" layoutX="329.0" layoutY="508.0" prefHeight="120.0" prefWidth="219.0" styleClass="emoji_pane" visible="false">
+      <AnchorPane fx:id="emojiPane" layoutX="6.0" layoutY="503.0" prefHeight="120.0" prefWidth="221.0" styleClass="emoji_pane" visible="false">
          <children>
             <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="14.0" layoutY="14.0" onMouseClicked="#grinningFaceEmojiOnAction" pickOnBounds="true">
                <image>

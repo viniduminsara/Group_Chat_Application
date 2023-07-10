@@ -9,8 +9,10 @@ import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import lk.ijse.chatApp.model.UserModel;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class LoginformController {
 
@@ -23,12 +25,23 @@ public class LoginformController {
     void btnLoginOnAction(ActionEvent event) throws IOException {
         if (!txtUsername.getText().isEmpty()){
             username = txtUsername.getText();
-            Stage stage = (Stage) txtUsername.getScene().getWindow();
-            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/clientForm.fxml"))));
-            stage.setTitle(username+"'s chat");
-            stage.getIcons().add(new Image("img/logo.png"));
-            stage.setOnCloseRequest(windowEvent -> ClientFormController.leaveChat());
-            stage.show();
+
+            boolean isExists = false;
+            try {
+                isExists = UserModel.existsUser(username);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            if (isExists) {
+                Stage stage = (Stage) txtUsername.getScene().getWindow();
+                stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/clientForm.fxml"))));
+                stage.setTitle(username + "'s chat");
+                stage.getIcons().add(new Image("img/logo.png"));
+                stage.setOnCloseRequest(windowEvent -> ClientFormController.leaveChat());
+                stage.show();
+            }else{
+                new Alert(Alert.AlertType.WARNING,"Invalid username").show();
+            }
         }else{
             new Alert(Alert.AlertType.WARNING,"Please enter the username").show();
         }

@@ -16,9 +16,12 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.FileChooser;
+import lk.ijse.chatApp.dto.UserDTO;
+import lk.ijse.chatApp.model.UserModel;
 
 import java.io.*;
 import java.net.Socket;
+import java.sql.SQLException;
 
 public class ClientFormController{
 
@@ -99,8 +102,9 @@ public class ClientFormController{
     }
 
     public void initialize() {
+
         username = LoginformController.username;
-        lblName.setText(username);
+        setDetails();
         setImageView();
 
         new Thread(() -> {
@@ -326,59 +330,82 @@ public class ClientFormController{
     @FXML
     void grinningFaceEmojiOnAction(MouseEvent event) {
         txtMessage.appendText("\uD83D\uDE00");
+        emojiPane.setVisible(false);
     }
 
     @FXML
     void grinningSquintingOnAction(MouseEvent event) {
         txtMessage.appendText("\uD83D\uDE06");
+        emojiPane.setVisible(false);
     }
 
     @FXML
     void smilingFaceWithOpenHandsOnAction(MouseEvent event) {
         txtMessage.appendText("\uD83E\uDD17");
+        emojiPane.setVisible(false);
     }
 
     @FXML
     void grinningFaceWithSweatOnAction(MouseEvent event) {
         txtMessage.appendText("\uD83D\uDE05");
+        emojiPane.setVisible(false);
     }
 
     @FXML
     void faceWithTearsOfJoyOnAction(MouseEvent event) {
         txtMessage.appendText("\uD83D\uDE02");
+        emojiPane.setVisible(false);
     }
 
     @FXML
     void cryingFaceOnAction(MouseEvent event) {
         txtMessage.appendText("\uD83D\uDE22");
+        emojiPane.setVisible(false);
     }
 
     @FXML
     void sunglassesFaceOnAction(MouseEvent event) {
         txtMessage.appendText("\uD83D\uDE0E");
+        emojiPane.setVisible(false);
     }
 
     @FXML
     void smilingFaceWithHeartEyesOnAction(MouseEvent event) {
         txtMessage.appendText("\uD83D\uDE0D");
+        emojiPane.setVisible(false);
     }
 
     @FXML
     void smilingFaceWithHornsOnAction(MouseEvent event) {
         txtMessage.appendText("\uD83D\uDE08");
+        emojiPane.setVisible(false);
     }
 
     @FXML
     void thumbsUpOnAction(MouseEvent event) {
         txtMessage.appendText("\uD83D\uDC4D");
+        emojiPane.setVisible(false);
     }
 
     private void setImageView() {
         double cornerRadius = 20.0; // Set the desired corner radius
-        Rectangle clip = new Rectangle(
-                imageView.getFitWidth(), imageView.getFitHeight());
+        Rectangle clip = new Rectangle(imageView.getFitWidth(), imageView.getFitHeight());
         clip.setArcWidth(cornerRadius);
         clip.setArcHeight(cornerRadius);
         imageView.setClip(clip);
+    }
+
+    private void setDetails(){
+        try {
+            UserDTO user = UserModel.getUser(username);
+            if (user != null) {
+                lblName.setText(user.getUsername());
+                if (user.getImage() != null){
+                    imageView.setImage(new Image(user.getImage()));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

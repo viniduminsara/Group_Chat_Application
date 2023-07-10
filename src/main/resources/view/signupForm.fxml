@@ -30,27 +30,17 @@
             <Font name="System Bold" size="40.0" />
          </font>
       </Label>
-      <JFXTextField fx:id="txtUsername" alignment="CENTER" focusColor="#2a9a84" layoutX="104.0" layoutY="408.0" prefHeight="31.0" prefWidth="396.0" promptText="Enter your username" style="-fx-prompt-text-fill: #2a9a84; -fx-text-fill: #2a9a84;" unFocusColor="#2a9a84">
-         <font>
-            <Font name="System Bold" size="20.0" />
-         </font>
-      </JFXTextField>
       <JFXButton layoutX="224.0" layoutY="569.0" onAction="#btnSignupOnAction" prefHeight="31.0" prefWidth="154.0" style="-fx-background-color: #2a9a84; -fx-background-radius: 8px;" text="Sign up" textFill="#2f3e46">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </JFXButton>
-      <JFXTextField fx:id="txtEmplyeeId" alignment="CENTER" focusColor="#2a9a84" layoutX="103.0" layoutY="479.0" prefHeight="31.0" prefWidth="396.0" promptText="Enter your employeeId" style="-fx-prompt-text-fill: #2a9a84; -fx-text-fill: #2a9a84;" unFocusColor="#2a9a84">
-         <font>
-            <Font name="System Bold" size="20.0" />
-         </font>
-      </JFXTextField>
-      <ImageView fx:id="imageView" fitHeight="163.0" fitWidth="200.0" layoutX="201.0" layoutY="215.0" pickOnBounds="true">
+      <ImageView fx:id="imageView" fitHeight="163.0" fitWidth="185.0" layoutX="208.0" layoutY="218.0" pickOnBounds="true">
          <image>
             <Image url="@../img/images.png" />
          </image>
       </ImageView>
-      <JFXButton contentDisplay="GRAPHIC_ONLY" layoutX="381.0" layoutY="346.0" onAction="#btnImageChooserOnAction" prefHeight="44.0" prefWidth="58.0" style="-fx-background-color: #2a9a84; -fx-background-radius: 30;" text="Edit" textFill="#2f3e46">
+      <JFXButton contentDisplay="GRAPHIC_ONLY" layoutX="374.0" layoutY="351.0" onAction="#btnImageChooserOnAction" prefHeight="44.0" prefWidth="58.0" style="-fx-background-color: #2a9a84; -fx-background-radius: 30;" text="Edit" textFill="#2f3e46">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
@@ -58,6 +48,17 @@
             <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true">
                <image>
                   <Image url="@../img/icons8-camera-100.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXTextField fx:id="txtId" focusColor="#2a9a84" layoutX="163.0" layoutY="430.0" prefHeight="31.0" prefWidth="277.0" promptText="Enter employeeId" style="-fx-text-fill: #2a9a84; -fx-prompt-text-fill: #2a9a84;" unFocusColor="#2a9a84" />
+      <JFXTextField fx:id="txtname" focusColor="#2a9a84" layoutX="162.0" layoutY="497.0" prefHeight="31.0" prefWidth="277.0" promptText="Enter username" style="-fx-prompt-text-fill: #2a9a84; -fx-text-fill: #2a9a84;" unFocusColor="#2a9a84" />
+      <JFXButton contentDisplay="GRAPHIC_ONLY" layoutX="8.0" layoutY="14.0" onAction="#btnBackOnAction" prefHeight="52.0" prefWidth="57.0" ripplerFill="#2f3e46">
+         <graphic>
+            <ImageView fitHeight="32.0" fitWidth="37.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../img/back.png" />
                </image>
             </ImageView>
          </graphic>
