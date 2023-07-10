@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -36,5 +37,14 @@ public class LoginformController {
     @FXML
     void txtUsernameOnAction(ActionEvent event) throws IOException {
         btnLoginOnAction(event);
+    }
+
+    @FXML
+    void btnSignupOnAction(MouseEvent event) throws IOException {
+        Stage stage = (Stage) txtUsername.getScene().getWindow();
+        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/signupForm.fxml"))));
+        stage.setTitle("Sign up");
+        stage.getIcons().add(new Image("img/logo.png"));
+        stage.show();
     }
 }

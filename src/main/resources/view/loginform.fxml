@@ -40,5 +40,10 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </JFXButton>
+      <Label layoutX="188.0" layoutY="505.0" onMouseClicked="#btnSignupOnAction" text="Don't have an account! Sign up" textFill="#2a9a84">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

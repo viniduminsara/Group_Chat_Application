@@ -12,6 +12,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.FileChooser;
@@ -41,6 +42,9 @@ public class ClientFormController{
 
     @FXML
     private ImageView clickedImage;
+
+    @FXML
+    private ImageView imageView;
 
     private BufferedReader bufferedReader;
 
@@ -97,6 +101,7 @@ public class ClientFormController{
     public void initialize() {
         username = LoginformController.username;
         lblName.setText(username);
+        setImageView();
 
         new Thread(() -> {
             try {
@@ -366,5 +371,14 @@ public class ClientFormController{
     @FXML
     void thumbsUpOnAction(MouseEvent event) {
         txtMessage.appendText("\uD83D\uDC4D");
+    }
+
+    private void setImageView() {
+        double cornerRadius = 20.0; // Set the desired corner radius
+        Rectangle clip = new Rectangle(
+                imageView.getFitWidth(), imageView.getFitHeight());
+        clip.setArcWidth(cornerRadius);
+        clip.setArcHeight(cornerRadius);
+        imageView.setClip(clip);
     }
 }
