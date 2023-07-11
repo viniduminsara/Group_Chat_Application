@@ -6,10 +6,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import lk.ijse.chatApp.model.UserModel;
+import lk.ijse.chatApp.util.SystemAlert;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -40,10 +42,10 @@ public class LoginformController {
                 stage.setOnCloseRequest(windowEvent -> ClientFormController.leaveChat());
                 stage.show();
             }else{
-                new Alert(Alert.AlertType.WARNING,"Invalid username").show();
+                new SystemAlert(Alert.AlertType.WARNING,"Warning","Invalid username", ButtonType.OK).show();
             }
         }else{
-            new Alert(Alert.AlertType.WARNING,"Please enter the username").show();
+            new SystemAlert(Alert.AlertType.WARNING,"Warning","Please enter the username",ButtonType.OK).show();
         }
     }
 

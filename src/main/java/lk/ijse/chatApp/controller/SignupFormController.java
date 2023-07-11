@@ -6,7 +6,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
@@ -14,6 +16,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import lk.ijse.chatApp.dto.UserDTO;
 import lk.ijse.chatApp.model.UserModel;
+import lk.ijse.chatApp.util.SystemAlert;
 
 import java.io.*;
 import java.net.URL;
@@ -31,7 +34,7 @@ public class SignupFormController implements Initializable {
     @FXML
     private ImageView imageView;
 
-    File file;
+    private File file;
 
     @FXML
     void btnImageChooserOnAction(ActionEvent event) {
@@ -68,17 +71,17 @@ public class SignupFormController implements Initializable {
                         isSaved = UserModel.saveUser(new UserDTO(employeeId, username, null));
                     }
                     if (isSaved) {
-                        new Alert(Alert.AlertType.CONFIRMATION, "Signup successfully completed!").show();
+                        new SystemAlert(Alert.AlertType.CONFIRMATION,"Confirmation","Signup successfully completed!", ButtonType.OK).show();
                         btnBackOnAction(event);
                     }
                 } else {
-                    new Alert(Alert.AlertType.WARNING, "Account is already exists").show();
+                    new SystemAlert(Alert.AlertType.WARNING,"Warning","Account is already exists",ButtonType.OK).show();
                 }
             } catch (FileNotFoundException | SQLException e) {
                 e.printStackTrace();
             }
         }else {
-            new Alert(Alert.AlertType.WARNING,"Please fill all details").show();
+            new SystemAlert(Alert.AlertType.WARNING,"Warning","Please fill all details",ButtonType.OK).show();
         }
 
     }
