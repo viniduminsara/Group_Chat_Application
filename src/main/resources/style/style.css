@@ -97,3 +97,14 @@
 .image_pane{
     -fx-background-color: rgba(100, 98, 98, 0.43);
 }
+
+.dark-text{
+    -fx-background-color:  #445159;
+    -fx-background-radius: 10px;
+}
+
+.light-text{
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 10px;
+}
+

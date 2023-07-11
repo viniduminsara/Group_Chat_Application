@@ -49,6 +49,18 @@ public class ClientFormController{
     @FXML
     private ImageView imageView;
 
+    @FXML
+    private AnchorPane root;
+
+    @FXML
+    private Pane textArea;
+
+    @FXML
+    private Pane header;
+
+    @FXML
+    private ImageView themeView;
+
     private BufferedReader bufferedReader;
 
     private static PrintWriter writer;
@@ -325,6 +337,23 @@ public class ClientFormController{
 
     public static void leaveChat(){
         writer.println("lef"+username + "~leave");
+    }
+
+    @FXML
+    void themeViewOnAction(MouseEvent event) {
+        if(themeView.getImage().getUrl().equals(new Image("img/light.png").getUrl())){
+            root.setStyle("-fx-background-color: #fefae0;");
+            textArea.getStyleClass().removeAll("dark-text");
+            textArea.getStyleClass().add("light-text");
+            header.setStyle("-fx-background-color: #2a9a84;");
+            themeView.setImage(new Image("img/dark.png"));
+        }else{
+            root.setStyle("-fx-background-color:  #2f3e46;");
+            textArea.getStyleClass().removeAll("light-text");
+            textArea.getStyleClass().add("dark-text");
+            header.setStyle("-fx-background-color: transparent;");
+            themeView.setImage(new Image("img/light.png"));;
+        }
     }
 
     @FXML

@@ -69,7 +69,6 @@ public class SignupFormController implements Initializable {
                     }
                     if (isSaved) {
                         new Alert(Alert.AlertType.CONFIRMATION, "Signup successfully completed!").show();
-                        Stage stage = (Stage) txtId.getScene().getWindow();
                         btnBackOnAction(event);
                     }
                 } else {
