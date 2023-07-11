@@ -45,11 +45,11 @@
 
 .receive-text {
     -fx-font-size: 12;
-    -fx-fill: #46775e;
+    -fx-fill: #2e4f3f;
 }
 
 .receive-box {
-    -fx-background-color: #74c69d;
+    -fx-background-color: #518b6e;
     -fx-padding: 8;
     -fx-border-radius: 8;
     -fx-background-radius: 8;
@@ -84,6 +84,11 @@
     -fx-text-fill:  #e63946;
     -fx-font-size: 16px;
     -fx-font-weight: bold;
+}
+
+.time-text{
+    -fx-fill: #e3d5ca;
+    -fx-font-size: 10px;
 }
 
 .emoji_pane{

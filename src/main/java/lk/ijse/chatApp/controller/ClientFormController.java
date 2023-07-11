@@ -14,6 +14,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.scene.text.TextFlow;
 import javafx.stage.FileChooser;
 import lk.ijse.chatApp.dto.UserDTO;
@@ -22,6 +23,8 @@ import lk.ijse.chatApp.model.UserModel;
 import java.io.*;
 import java.net.Socket;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class ClientFormController{
 
@@ -129,11 +132,13 @@ public class ClientFormController{
                 writer.println("joi"+username+"~joining");
 
                 while (true){
+                    //reading response
                     String receive = bufferedReader.readLine();
                     String[] split = receive.split("~");
                     String name = split[0];
                     String message = split[1];
 
+                    //find which type of message is came
                     String firstChars = "";
                     if (name.length() > 3) {
                         firstChars = name.substring(0, 3);
@@ -151,6 +156,7 @@ public class ClientFormController{
                     if (firstChars.equalsIgnoreCase("img")){
                         if (finalName.equalsIgnoreCase(username)){
 
+                            //adding image to message
                             File receiveFile = new File(message);
                             Image image = new Image(receiveFile.toURI().toString());
                             ImageView imageView = new ImageView(image);
@@ -160,12 +166,21 @@ public class ClientFormController{
                                 clickedImage.setImage(imageView.getImage());
                                 imagePane.setVisible(true);
                             });
-
+                            //adding sender to message
                             Text text = new Text("~ Me");
                             text.getStyleClass().add("send-text");
 
+                            //add time
+                            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm");
+                            LocalDateTime now = LocalDateTime.now();
+                            Text time = new Text(dtf.format(now));
+                            time.getStyleClass().add("time-text");
+                            HBox timeBox = new HBox();
+                            timeBox.getChildren().add(time);
+                            timeBox.setAlignment(Pos.BASELINE_RIGHT);
+
                             VBox vbox = new VBox(10);
-                            vbox.getChildren().addAll(text, imageView);
+                            vbox.getChildren().addAll(text, imageView, timeBox);
 
                             HBox hBox = new HBox(10);
                             hBox.getStyleClass().add("send-box");
@@ -176,6 +191,7 @@ public class ClientFormController{
                             StackPane stackPane = new StackPane(hBox);
                             stackPane.setAlignment(Pos.CENTER_RIGHT);
 
+                            //adding message to message area
                             Platform.runLater(() -> {
                                 vBox.getChildren().addAll(stackPane);
                                 scrollPane.layout();
@@ -188,6 +204,7 @@ public class ClientFormController{
                                 vBox.getChildren().add(hBox1);
                             });
                         }else {
+                            //adding image to message
                             File receives = new File(message);
                             Image image = new Image(receives.toURI().toString());
                             ImageView imageView = new ImageView(image);
@@ -198,11 +215,21 @@ public class ClientFormController{
                                 imagePane.setVisible(true);
                             });
 
+                            //adding sender to message
                             Text text = new Text("~ "+finalName);
                             text.getStyleClass().add("receive-text");
 
+                            //add time
+                            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm");
+                            LocalDateTime now = LocalDateTime.now();
+                            Text time = new Text(dtf.format(now));
+                            time.getStyleClass().add("time-text");
+                            HBox timeBox = new HBox();
+                            timeBox.getChildren().add(time);
+                            timeBox.setAlignment(Pos.BASELINE_RIGHT);
+
                             VBox vbox = new VBox(10);
-                            vbox.getChildren().addAll(text, imageView);
+                            vbox.getChildren().addAll(text, imageView, timeBox);
 
                             HBox hBox = new HBox(10);
                             hBox.getStyleClass().add("receive-box");
@@ -210,6 +237,7 @@ public class ClientFormController{
                             hBox.setMaxWidth(220);
                             hBox.getChildren().add(vbox);
 
+                            //adding message to message area
                             Platform.runLater(() -> {
                                 vBox.getChildren().addAll(hBox);
                                 scrollPane.layout();
@@ -223,6 +251,8 @@ public class ClientFormController{
                         }
                     }else if(firstChars.equalsIgnoreCase("joi")) {
                         if (finalName.equalsIgnoreCase(username)){
+
+                            //adding name of client which join the chat
                             Label text = new Label("You have join the chat");
                             text.getStyleClass().add("join-text");
                             HBox hBox = new HBox();
@@ -252,6 +282,7 @@ public class ClientFormController{
                             });
                         }
                     }else if(firstChars.equalsIgnoreCase("lef")){
+                        //adding name of client which left the chat
                         Label text = new Label(finalName+" has left the chat");
                         text.getStyleClass().add("left-text");
                         HBox hBox = new HBox();
@@ -267,18 +298,32 @@ public class ClientFormController{
                         });
                     } else{
                         if(name.equalsIgnoreCase(username)){
+
+                            //add message
                             TextFlow tempFlow = new TextFlow();
                             Text text = new Text(message);
                             text.setStyle("-fx-fill: white");
                             text.setWrappingWidth(200);
                             tempFlow.getChildren().add(text);
-                            tempFlow.setMaxWidth(150);
+                            tempFlow.setMaxWidth(200);
 
+                            //add sender name
                             Text nameText = new Text("~ Me");
                             nameText.getStyleClass().add("send-text");
-                            VBox vbox = new VBox(10);
-                            vbox.getChildren().addAll(nameText, tempFlow);
 
+                            //add time
+                            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm");
+                            LocalDateTime now = LocalDateTime.now();
+                            Text time = new Text(dtf.format(now));
+                            time.getStyleClass().add("time-text");
+                            HBox timeBox = new HBox();
+                            timeBox.getChildren().add(time);
+                            timeBox.setAlignment(Pos.BASELINE_RIGHT);
+                            VBox vbox = new VBox(10);
+                            vbox.setPrefWidth(210);
+                            vbox.getChildren().addAll(nameText, tempFlow, timeBox);
+
+                            //add all into message
                             HBox hBox = new HBox(12);
                             hBox.getStyleClass().add("send-box");
                             hBox.setMaxWidth(220);
@@ -286,6 +331,8 @@ public class ClientFormController{
                             hBox.getChildren().add(vbox);
                             StackPane stackPane = new StackPane(hBox);
                             stackPane.setAlignment(Pos.CENTER_RIGHT);
+
+                            //add message into message area
                             Platform.runLater(() -> {
                                 vBox.getChildren().addAll(stackPane);
                                 scrollPane.layout();
@@ -297,24 +344,38 @@ public class ClientFormController{
                                 vBox.getChildren().add(hBox1);
                             });
                         }else {
+                            //add message
                             TextFlow tempFlow = new TextFlow();
                             Text text = new Text(message);
                             text.setStyle("-fx-fill: white");
                             text.setWrappingWidth(200);
                             tempFlow.getChildren().add(text);
-                            tempFlow.setMaxWidth(150);
+                            tempFlow.setMaxWidth(200);
 
+                            //add sender name
                             Text nameText = new Text("~ "+name);
                             nameText.getStyleClass().add("receive-text");
-                            VBox vbox = new VBox(10);
-                            vbox.getChildren().addAll(nameText, tempFlow);
 
+                            //add time
+                            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm");
+                            LocalDateTime now = LocalDateTime.now();
+                            Text time = new Text(dtf.format(now));
+                            time.getStyleClass().add("time-text");
+                            HBox timeBox = new HBox();
+                            timeBox.getChildren().add(time);
+                            timeBox.setAlignment(Pos.BASELINE_RIGHT);
+                            VBox vbox = new VBox(10);
+                            vbox.setPrefWidth(210);
+                            vbox.getChildren().addAll(nameText, tempFlow, timeBox);
+
+                            //add all into message
                             HBox hBox = new HBox();
                             hBox.getStyleClass().add("receive-box");
                             hBox.setMaxWidth(220);
                             hBox.setMaxHeight(50);
                             hBox.getChildren().add(vbox);
 
+                            //add message into message area
                             Platform.runLater(() -> {
                                 vBox.getChildren().addAll(hBox);
                                 scrollPane.layout();
