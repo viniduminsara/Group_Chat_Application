@@ -15,7 +15,7 @@
             <Image url="@../img/background.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="76.0" fitWidth="83.0" layoutX="260.0" layoutY="43.0" pickOnBounds="true">
+      <ImageView fitHeight="128.0" fitWidth="141.0" layoutX="231.0" layoutY="28.0" pickOnBounds="true">
          <image>
             <Image url="@../img/logo.png" />
          </image>

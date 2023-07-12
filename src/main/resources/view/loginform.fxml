@@ -15,7 +15,7 @@
             <Image url="@../img/background.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="121.0" fitWidth="122.0" layoutX="247.0" layoutY="170.0" pickOnBounds="true">
+      <ImageView fitHeight="171.0" fitWidth="198.0" layoutX="202.0" layoutY="132.0" pickOnBounds="true">
          <image>
             <Image url="@../img/logo.png" />
          </image>
@@ -25,7 +25,7 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="160.0" layoutY="313.0" prefHeight="58.0" prefWidth="297.0" text="Live Chat Login" textFill="#2a9a84">
+      <Label layoutX="161.0" layoutY="288.0" prefHeight="58.0" prefWidth="297.0" text="Live Chat Login" textFill="#2a9a84">
          <font>
             <Font name="System Bold" size="40.0" />
          </font>
